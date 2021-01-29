@@ -1,6 +1,7 @@
 const http = require('http');
 const express = require('express');
 const app = express();
+const path = require('path');
 
 const PORT = process.env.PORT || 8080;
 
@@ -18,9 +19,9 @@ const reservations = [
 ]
 
 // Routes so to html pages
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
-app.get('/reservation', (req, res) => res.sendFile(path.join(__dirname, 'reservation.html')));
-app.get('/tables', (req, res) => res.sendFile(path.join(__dirname, 'tables.html')));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, '/index.html')));
+app.get('/reservation', (req, res) => res.sendFile(path.join(__dirname, '/reservation.html')));
+app.get('/tables', (req, res) => res.sendFile(path.join(__dirname, '/tables.html')));
 
 // Routes for api's
 app.get('/api/tables', (req, res) => res.json(reservations));
