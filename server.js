@@ -4,9 +4,8 @@ const app = express();
 
 const PORT = process.env.PORT || 8080;
 
-const handleRequest = (req, res) => {
-
-};
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 const reservations = [
     {
@@ -32,8 +31,6 @@ app.post('/api/tables', (req, res) => {
     reservations.push(newReservation);
     res.json(newReservation);
 });
-
-const server = http.createServer(handleRequest);
 
 app.listen(PORT, () => {
     console.log(`Server listening on: http://localhost:${PORT}`);
