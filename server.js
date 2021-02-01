@@ -1,9 +1,11 @@
 const http = require('http');
 const express = require('express');
 const app = express();
+const path = require('path');
 
 const PORT = process.env.PORT || 8080;
 
+//Middleware to update posts
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
