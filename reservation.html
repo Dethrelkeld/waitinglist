@@ -45,6 +45,11 @@
                 <label for="phone">Phone Number</label>
                 <input type="text" class="form-control" id="phone" />
               </div>
+
+              <div class="form-group">
+                <label for="id">Unique ID</label>
+                <input type="text" class="form-control" id="unqiue-id" />
+              </div>
             </form>
             <br />
             <div class="text-right">
@@ -66,8 +71,39 @@
 
     <script type="text/javascript">
 
-    //    Put client side code in here
+      const submitBtn = document.getElementById('#add-btn');
 
+      submitBtn.addEventListener("click", (event) => {
+          event.preventDefault();
+
+          let customerName = document.getElementById('#name').value.trim();
+          let phoneNumber = document.getElementById('phone').value.trim();
+          let emailAddress = document.getElementById('email').value.trim();
+          let uniqueID = document.getElementById('unique-id').value.trim();
+
+          let newReservation = {
+              name: customerName,
+              number: phoneNumber,
+              email: emailAddress,
+              ID: uniqueID,
+          };
+
+          fetch('/api/reservation', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(newReservation),
+          })
+              .then((response) => response.json())
+              .then((data) => {
+                  console.log('reservations.html', data);
+                  alert(`Thanks ${data.name}, your reservation has been made.` )
+              })
+              .catch((error) => {
+                  console.error('Error: ', error);
+              });
+      });
 
     </script>
 </body>

@@ -38,8 +38,34 @@
 
     <script type="text/javascript">
 
-    //    Put client side code in here
+        const nameEl = document.getElementById('');
+        const numberEl = document.getElementById('');
+        const emailEl = document.getElementById('');
+        const idEl = document.getElementById('');
 
+        fetch(`/api/tables`, {
+            method: `GET`,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                const { name, number, email, ID } = data;
+
+                if (data) {
+                    nameEl.textContent = name;
+                    numberEl.textContent = number;
+                    emailEl.textContent = email;
+                    idEl.textContent = ID;
+                } else {
+                    // Remove text content
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
 
     </script>
 </body>
